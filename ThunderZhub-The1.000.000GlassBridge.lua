@@ -93,11 +93,6 @@ Tabs.Main:Button({
     Locked = false
 })
 
-Tabs.Main:Button({
-    Title = "Free Admin",
-    Locked = true,
-})
-
 -- Shop
 
 Tabs.Shop:Button({
