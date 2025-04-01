@@ -59,10 +59,40 @@ InterfaceSection:AddButton({
     end
 })
 
-local InterfaceSection = Tabs.Main:AddSection("Auto Faem")
+local InterfaceSection = Tabs.Main:AddSection("Auto Farm")
 
--- Freeze Toggle
-local AutoCastToggle = Tabs.Main:AddToggle("AutoCast", { Title = "Faem for money", Default = false })
+--freeze
+local AutoCastToggle = Tabs.Main:AddToggle("AutoCast", { Title = "Freeze", Default = false })
+AutoCastToggle:OnChanged(function(value)
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
+
+    if not humanoidRootPart then return end  -- ตรวจสอบว่ามี HumanoidRootPart จริงๆ
+
+    if value then
+        -- เปิด Freeze: บันทึกตำแหน่งเดิมและล็อกตัวละครไว้
+        local oldPos = humanoidRootPart.CFrame
+
+        task.spawn(function()
+            while AutoCastToggle.Value do
+                task.wait()
+                if humanoidRootPart then
+                    humanoidRootPart.CFrame = oldPos
+                else
+                    break
+                end
+            end
+        end)
+    else
+        -- ปิด Freeze: ให้ตัวละครเคลื่อนที่ได้ปกติ
+        humanoidRootPart.Anchored = false
+    end
+end)
+
+
+-- Farm Money
+local AutoCastToggle = Tabs.Main:AddToggle("AutoCast", { Title = "Farm for money", Default = false })
 AutoCastToggle:OnChanged(function(state)
     _G.AutoCast = state
     if state then
