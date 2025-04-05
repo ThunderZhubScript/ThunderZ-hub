@@ -41,7 +41,7 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "list" }),
     Teleport = Window:AddTab({ Title = "Teleport", Icon = "map-pin" }),
-    Shop = Window:AddTab({ Title = "Shop", Icon = "Shop" }),
+    Shop = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
@@ -111,7 +111,7 @@ AutoFischToggle:OnChanged(function(state)
     _G.AutoFisch = state
     spawn(function()
         while _G.AutoFisch do
-            wait(0.01)
+            wait(0.1)
             pcall(function()
                 -- Ensure that the character is not frozen before proceeding with Auto Fisch actions
                 if not _G.IsFrozen then
@@ -148,7 +148,7 @@ AutoFischToggle:OnChanged(function(state)
                         if reelfinished then
                             for _, v in pairs(LocalPlayer.PlayerGui:GetChildren()) do
                                 if v:IsA("ScreenGui") and v.Name == "reel" and v:FindFirstChild("bar") then
-                                    wait(0.01)
+                                    wait(0.1)
                                     reelfinished:FireServer(100, true)
                                 end
                             end
@@ -156,7 +156,7 @@ AutoFischToggle:OnChanged(function(state)
                     end
                 else
                     -- If the character is frozen, pause Auto Fisch
-                    wait(0.01) -- Delay to avoid constant checks
+                    wait(0.1) -- Delay to avoid constant checks
                 end
             end)
         end
