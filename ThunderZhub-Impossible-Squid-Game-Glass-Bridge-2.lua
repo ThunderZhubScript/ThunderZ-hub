@@ -66,7 +66,7 @@ AutoTapToggle:OnChanged(function(Value)
                     }
                     game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("blockRemote"):FireServer(unpack(args))
                 end)
-                task.wait(0.1) -- สามารถปรับความถี่ได้
+                task.wait(5) -- สามารถปรับความถี่ได้
             end
         end)
     end
