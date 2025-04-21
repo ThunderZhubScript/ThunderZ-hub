@@ -401,7 +401,7 @@ end)
 
 -- Tp
 Tabs.Teleport:AddButton({
-    Title = "TP word1",
+    Title = "Teleport Word1",
     Description = "",
     Callback = function()
         local args = {
@@ -414,11 +414,24 @@ Tabs.Teleport:AddButton({
 })
 
 Tabs.Teleport:AddButton({
-    Title = "TP word2",
+    Title = "Teleport Word2",
     Description = "",
     Callback = function()
         local args = {
             [1] = "1",
+            [2] = false
+        }
+
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Events"):WaitForChild("PortalC"):FireServer(unpack(args))
+    end
+})
+
+Tabs.Teleport:AddButton({
+    Title = "Teleport Word3",
+    Description = "",
+    Callback = function()
+        local args = {
+            [1] = "3",
             [2] = false
         }
 
