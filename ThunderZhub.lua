@@ -3,8 +3,7 @@ local allowedMaps = {
     [16732694052] = "https://raw.githubusercontent.com/ThunderZhubScript/ThunderZ-hub/refs/heads/main/ThunderZhub-Fisch.lua",
     [6243699076]  = "https://raw.githubusercontent.com/ThunderZhubScript/ThunderZ-hub/main/ThunderZhub-TheMimic.lua",
     [87854376962069] = "https://raw.githubusercontent.com/ThunderZhubScript/ThunderZ-hub/main/ThunderZhub-The1.000.000GlassBridge.lua",
-    [13827198708] = "https://raw.githubusercontent.com/ThunderZhubScript/ThunderZ-hub/main/ThunderZhub-Pull-a-Sword.lua",
-    [2753915549]  = "https://raw.githubusercontent.com/ThundarZ/Welcome/main/Main/Loader/AllGame.lua"
+    [13827198708] = "https://raw.githubusercontent.com/ThunderZhubScript/ThunderZ-hub/main/ThunderZhub-Pull-a-Sword.lua"
 
 local currentPlaceId = game.PlaceId
 
