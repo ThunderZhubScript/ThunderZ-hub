@@ -1,4 +1,3 @@
--- สร้างตารางเก็บ PlaceId และลิงก์ของสคริปต์
 local allowedMaps = {
     [16993432698] = "https://raw.githubusercontent.com/ThunderZhubScript/ThunderZ-hub/main/ThunderZhub-Impossible-Squid-Game-Glass-Bridge-2.lua",
     [16732694052] = "https://raw.githubusercontent.com/ThunderZhubScript/ThunderZ-hub/refs/heads/main/ThunderZhub-Fisch.lua",
