@@ -8,7 +8,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "THUNDER Z HUB " .. Fluent.Version,
+    Title = "THUNDER Z HUB ",
     SubTitle = "by ThunderNorlis",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
@@ -19,6 +19,7 @@ local Window = Fluent:CreateWindow({
 
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "list" }),
+    Boss = Window:AddTab({ Title = "Boss", Icon = "Boss" }),
     Teleport = Window:AddTab({ Title = "Teleport", Icon = "map-pin" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
@@ -99,6 +100,23 @@ task.spawn(function()
         end
     end
 end)
+
+local InterfaceSection: any = Tabs.Main:AddSection("Spin")
+
+local AutoClickToggle = Tabs.Main:AddToggle("AutoSpin", {
+    Title = "Auto Spin",
+    Default = false
+})
+
+task.spawn(function()
+    while true do
+        task.wait(0.01)
+        if AutoClickToggle.Value then
+            game:GetService("ReplicatedStorage"):WaitForChild("GameClient"):WaitForChild("Events"):WaitForChild("RemoteEvent"):WaitForChild("SpaceEggEvent"):FireServer()
+        end
+    end
+end)
+
 
 local InterfaceSection: any = Tabs.Main:AddSection("Redeem Code")
 
@@ -345,6 +363,40 @@ Tabs.Main:AddButton({
 
     end
 })
+
+local InterfaceSection: any = Tabs.Boss:AddSection("Farm Boss")
+
+local AutoFarmBoosToggle = Tabs.Boss:AddToggle("AutoFarmBoss", {
+    Title = "Auto Farm Boss Dravenar",
+    Default = false
+})
+
+AutoFarmBoosToggle:OnChanged(function(value)
+    if value then  -- เมื่อ toggle เปิด (true)
+        while AutoFarmBoosToggle.Value do  -- ทำงานต่อไปจนกว่า toggle จะปิด (false)
+            -- STEP 1: Run RemoveC(1)
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Events"):WaitForChild("RemoveC"):FireServer(1)
+
+            -- STEP 2: Wait for 5 seconds
+            task.wait(5)
+
+            -- STEP 3: Run WinBossEvent("Boss2")
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Events"):WaitForChild("WinBossEvent"):FireServer("Boss2")
+
+            -- STEP 4: Wait for the boss event to be processed
+            task.wait(2)
+
+            -- STEP 5: Run RemoveC(0)
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Events"):WaitForChild("RemoveC"):FireServer(0)
+
+            -- STEP 6: Wait for 5-10 seconds before running again to avoid bugs
+            local waitTime = math.random(5, 10)  -- Random wait time between 5 and 10 seconds
+            task.wait(waitTime)
+        end
+    end
+end)
+
+
 
 
 -- Tp
